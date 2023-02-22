@@ -1,2 +1,2 @@
 # Grade11Arduino
-Arduino .ino code for Grade 11 high school technology engineering
+Arduino .ino code for Grade 11 high school technology engineering course
