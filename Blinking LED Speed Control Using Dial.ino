@@ -10,8 +10,10 @@ void setup()
 void loop()
 {
   int value = analogRead(readPin);
-    digitalWrite(12, HIGH);
   Serial.print("Value is: ");
   Serial.println(value);
-  delay(1000);
+  digitalWrite(12, HIGH);
+  delay(value);
+  digitalWrite(12, LOW);
+  delay(value);
 }
