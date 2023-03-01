@@ -1,9 +1,10 @@
 int timer = 0; //keeps track of target time
-int buttonState = digitalRead(2);
-int lightupduration = 1000 //sets length of timer in ms, how long LED is lit up for
+int buttonState = 0; //sets state of button to off
+int lightupduration = 1000; //length of timer in ms, how long LED is lit up for
 
 void setup() //setup for checking button press status
 {
+  Serial.begin(9600);
   pinMode(2, INPUT); //output button push status
   pinMode(LED_BUILTIN, OUTPUT); //setup LED power pin
 }
@@ -11,7 +12,7 @@ void setup() //setup for checking button press status
 void loop()
 {
 buttonState = digitalRead(2);
-Serial.println(buttonState)
+Serial.println(buttonState); //print status of button to serial monitor
 
 if (buttonState == HIGH) {
    timer = millis() + lightupduration; //change target time to chosen time from the current time
