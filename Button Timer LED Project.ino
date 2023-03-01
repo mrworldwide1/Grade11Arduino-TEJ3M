@@ -12,7 +12,6 @@ void setup() //setup for checking button press status
 void loop()
 {
 buttonState = digitalRead(2);
-//Serial.println(buttonState); //print status of button to serial monitor
 
 if (buttonState == 1) {
   Serial.print("Button is pressed");
