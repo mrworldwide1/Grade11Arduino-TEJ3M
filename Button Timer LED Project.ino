@@ -12,7 +12,15 @@ void setup() //setup for checking button press status
 void loop()
 {
 buttonState = digitalRead(2);
-Serial.println(buttonState); //print status of button to serial monitor
+//Serial.println(buttonState); //print status of button to serial monitor
+
+if (buttonState == 1) {
+  Serial.print("Button is pressed");
+  Serial.print('\n');
+} else {
+  Serial.print("Button is unpressed");
+  Serial.print('\n');
+}
 
 if (buttonState == HIGH) {
    timer = millis() + lightupduration; //change target time to chosen time from the current time
