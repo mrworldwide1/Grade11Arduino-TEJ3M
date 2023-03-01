@@ -1,5 +1,5 @@
 //TODO: Add LED countdown for 5 leds based on milis/lightup duration
-//TODO: Add potentionemter analog read, and adjust 
+//TODO: Add potentionemter analog read, and set lightupduration to potentionmeter value
 
 int timer = 0; //keeps track of target time
 int buttonState = 0; //sets state of button to off
@@ -15,7 +15,7 @@ void setup() //setup for checking button press status
 void loop()
 {
   
-buttonState = digitalRead(2); //store button press status as variable for a higher mark
+buttonState = digitalRead(2); //store button press status as variable for a higher mark on the project
 
 //print to serial monitor whether the button is pressed or not
 if (buttonState == 1) {
