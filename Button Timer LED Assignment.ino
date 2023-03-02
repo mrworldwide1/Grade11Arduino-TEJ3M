@@ -1,6 +1,4 @@
 //TODO: Add LED countdown for 5 leds based on milis/lightup duration
-//TODO: Add potentionemter analog read, and set lightupduration to potentionmeter value via MAT
-//TODO: Add potpin for potentiometer referring to https://docs.arduino.cc/learn/electronics/potentiometer-basics
 
 //SET VARIABLES
 int timer = 0; //keeps track of target time
@@ -33,12 +31,12 @@ lightUpDuration = map(lightUpDuration, 0, 1023, 1000, 10000);
   
 //output status of button for debugging
 if (buttonState == pressed) {
-//  Serial.print("Button is pressed");
-//  Serial.print('\n');
+  Serial.print("Button is pressed. Time: ");
+  Serial.print('\n');
   Serial.println(lightUpDuration);
 } else {
- // Serial.print("Button is unpressed");
-  //Serial.print('\n');
+ Serial.print("Button is unpressed. Time: ");
+ Serial.print('\n');
   Serial.println(lightUpDuration);
 }
 
