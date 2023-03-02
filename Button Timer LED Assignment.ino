@@ -22,12 +22,10 @@ void loop()
 {
 buttonState = digitalRead(buttonPin); //store button status as variable
 
-////////////
+//potentiometer
 potVal = analogRead(potPin);
 int lightUpDuration = potVal;
 lightUpDuration = map(lightUpDuration, 0, 1023, 1000, 10000);
-
-//////////////
   
 //output status of button for debugging
 if (buttonState == pressed) {
