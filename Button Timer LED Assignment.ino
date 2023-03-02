@@ -1,5 +1,6 @@
 //TODO: Add LED countdown for 5 leds based on milis/lightup duration
 //TODO: Add potentionemter analog read, and set lightupduration to potentionmeter value
+//TODO: Add potpin
 
 int timer = 0; //keeps track of target time
 int buttonState = 0; //sets state of button to off
