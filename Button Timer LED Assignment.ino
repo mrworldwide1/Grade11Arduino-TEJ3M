@@ -3,7 +3,7 @@
 //TODO: Add potpin for potentiometer referring to https://docs.arduino.cc/learn/electronics/potentiometer-basics
 
 int timer = 0; //keeps track of target time
-int buttonState = 0; //stores button on/off state as var, sets button to off
+int buttonState = 0; //initialize var, set button to off
 int lightUpDuration = 1000; //length of timer in ms, how long LED is lit up for
 int buttonPin = 2; //button output connected to digital pin 2
 int yellowLED = LED_BUILTIN; //yellow LED, connected to builtin LED pin
@@ -28,7 +28,7 @@ if (buttonState == pressed) {
   Serial.print('\n');
 }
 
-if (buttonState == HIGH) {
+if (buttonState == pressed) {
    timer = millis() + lightUpDuration; //change target time to chosen time from the current time
  }
  if (timer > millis()) {
