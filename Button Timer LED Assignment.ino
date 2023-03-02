@@ -11,6 +11,7 @@ int pressed = 1; //HIGH represented as variable to simplify code. 1 means button
 int yellowLED = LED_BUILTIN; //yellow LED, connected to builtin LED pin
 int potPin = A0; //potentiometer should be connected to A0 analog pin
 int potVal = 0;//read value of potentiometer pin
+int lock = 0; //Pressing the button again once the timer is started doesn't affect it
 
 void setup()
 {
@@ -34,19 +35,23 @@ if (buttonState == pressed) {
   Serial.print("Button is pressed. Time: ");
   Serial.print('\n');
   Serial.println(lightUpDuration);
+  Serial.println(lock);
 } else {
  Serial.print("Button is unpressed. Time: ");
  Serial.print('\n');
   Serial.println(lightUpDuration);
+  Serial.println(lock);
 }
 
-if (buttonState == pressed) {
+if (buttonState == pressed && lock == 0) {
    timer = millis() + lightUpDuration; //change target time to chosen time from the current time
+  lock = 1;
  }
  if (timer > millis()) {
    digitalWrite(yellowLED, HIGH); //turn on LED
   } else {
     digitalWrite(yellowLED, LOW); //if time runs out, turn off LED
+   lock = 0;
    }
   delay(10); //delay a little bit to improve performance
 }
