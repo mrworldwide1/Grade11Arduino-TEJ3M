@@ -1,24 +1,25 @@
 //TODO: Add LED countdown for 5 leds based on milis/lightup duration
 //TODO: Add potentionemter analog read, and set lightupduration to potentionmeter value
-//TODO: Add potpin
+//TODO: Add potpin for potentiometer referring to https://docs.arduino.cc/learn/electronics/potentiometer-basics
 
 int timer = 0; //keeps track of target time
-int buttonState = 0; //sets state of button to off
-int lightupduration = 1000; //length of timer in ms, how long LED is lit up for
+int buttonState = 0; //stores button on/off state as var, sets button to off
+int lightUpDuration = 1000; //length of timer in ms, how long LED is lit up for
+int buttonPin = 2; //button output connected to digital pin 2
+int yellowLED = LED_BUILTIN; //yellow LED, connected to builtin LED pin
 
-void setup() //setup for checking button press status
+void setup()
 {
   Serial.begin(9600);
-  pinMode(2, INPUT); //output button push status
-  pinMode(LED_BUILTIN, OUTPUT); //setup LED power pin
+  pinMode(buttonPin, INPUT); //output button push status to button variable
+  pinMode(yellowLED, OUTPUT); //setup yellow LED power pin
 }
 
 void loop()
 {
-  
-buttonState = digitalRead(2); //store button press status as variable for a higher mark on the project
+buttonState = digitalRead(buttonPin); //store button status as variable
 
-//print to serial monitor whether the button is pressed or not
+//output status of button for debugging
 if (buttonState == 1) {
   Serial.print("Button is pressed");
   Serial.print('\n');
@@ -28,12 +29,12 @@ if (buttonState == 1) {
 }
 
 if (buttonState == HIGH) {
-   timer = millis() + lightupduration; //change target time to chosen time from the current time
+   timer = millis() + lightUpDuration; //change target time to chosen time from the current time
  }
  if (timer > millis()) {
-   digitalWrite(LED_BUILTIN, HIGH); //turn on LED
+   digitalWrite(yellowLED, HIGH); //turn on LED
   } else {
-    digitalWrite(LED_BUILTIN, LOW); //if time runs out, turn off LED
+    digitalWrite(yellowLED, LOW); //if time runs out, turn off LED
    }
   delay(10); //delay a little bit to improve performance
 }
