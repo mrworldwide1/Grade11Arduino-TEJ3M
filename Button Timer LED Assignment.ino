@@ -7,7 +7,7 @@ int buttonState = 0; //initialize var, set button to off
 int lightUpDuration = 1000; //length of timer in ms, how long LED is lit up for
 int buttonPin = 2; //button output connected to digital pin 2
 int yellowLED = LED_BUILTIN; //yellow LED, connected to builtin LED pin
-int pressed = 1; //1 means button is pressed, 0 means no
+int pressed = 1; //HIGH represented as variable to simplify code. 1 means button is pressed, 0 means no
 
 void setup()
 {
