@@ -19,8 +19,8 @@ void setup()
 void loop()
 {
 buttonState = digitalRead(buttonPin); //store button status as variable
+
 //output status of button for debugging
- 
 if (buttonState == pressed) {
   Serial.print("Button is pressed");
   Serial.print('\n');
