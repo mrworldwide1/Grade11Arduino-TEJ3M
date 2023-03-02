@@ -9,10 +9,8 @@ int buttonPin = 2; //button output connected to digital pin 2
 int buttonState = 0; //initialize var, set button state to off
 int pressed = 1; //HIGH represented as variable to simplify code. 1 means button is pressed, 0 means no
 int yellowLED = LED_BUILTIN; //yellow LED, connected to builtin LED pin
-int on = 1; //for the LEDs, HIGH is represented as variable
-int off = 0;//for the LEDs, LOW is represented as variable
 int potPin = A0; //potentiometer should be connected to A0 analog pin
-int potVal = analogRead(potPin); //read value of potentiometer pin
+int potVal = 0;//read value of potentiometer pin
 
 void setup()
 {
@@ -30,6 +28,7 @@ buttonState = digitalRead(buttonPin); //store button status as variable
 potVal = analogRead(potPin);
 int lightUpDuration = potVal;
 lightUpDuration = map(lightUpDuration, 0, 1023, 1000, 10000);
+
 //////////////
   
 //output status of button for debugging
@@ -41,16 +40,15 @@ if (buttonState == pressed) {
  // Serial.print("Button is unpressed");
   //Serial.print('\n');
   Serial.println(lightUpDuration);
-
 }
 
 if (buttonState == pressed) {
    timer = millis() + lightUpDuration; //change target time to chosen time from the current time
  }
  if (timer > millis()) {
-   digitalWrite(yellowLED, on); //turn on LED
+   digitalWrite(yellowLED, HIGH); //turn on LED
   } else {
-    digitalWrite(yellowLED, off); //if time runs out, turn off LED
+    digitalWrite(yellowLED, LOW); //if time runs out, turn off LED
    }
   delay(10); //delay a little bit to improve performance
 }
