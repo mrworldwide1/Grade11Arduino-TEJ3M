@@ -1,5 +1,7 @@
 //TODO: Add LED countdown for 5 leds based on milis/lightup duration
 
+//INSTRUCTIONS: Turn dial to desired time then press button. Dial sets the time the LED will be lit for.
+
 //SET VARIABLES
 int timer = 0; //keeps track of target time
 int lightUpDuration = 0; //length of timer in ms
@@ -27,7 +29,7 @@ potVal = analogRead(potPin);
 int lightUpDuration = potVal;
 lightUpDuration = map(lightUpDuration, 0, 1023, 1000, 10000);
   
-//output status of button for debugging
+//output status of button & dial for debugging
 if (buttonState == pressed) {
   Serial.print("Button is pressed. Time: ");
   Serial.print('\n');
