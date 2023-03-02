@@ -19,6 +19,7 @@ void setup()
   Serial.begin(9600);
   pinMode(buttonPin, INPUT); //output button push status as variable
   pinMode(yellowLED, OUTPUT); //setup yellow LED power pin
+  pinMode(potPin, INPUT);
 }
 
 void loop()
@@ -33,12 +34,12 @@ lightUpDuration = map(lightUpDuration, 0, 1023, 1000, 10000);
   
 //output status of button for debugging
 if (buttonState == pressed) {
-  Serial.print("Button is pressed");
-  Serial.print('\n');
+//  Serial.print("Button is pressed");
+//  Serial.print('\n');
   Serial.println(lightUpDuration);
 } else {
-  Serial.print("Button is unpressed");
-  Serial.print('\n');
+ // Serial.print("Button is unpressed");
+  //Serial.print('\n');
   Serial.println(lightUpDuration);
 
 }
