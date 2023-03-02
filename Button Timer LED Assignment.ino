@@ -1,6 +1,7 @@
 //TODO: Add LED countdown for 5 leds based on milis/lightup duration
 //TODO: Add potentionemter analog read, and set lightupduration to potentionmeter value via MAP function
 //TODO: Add potpin for potentiometer referring to https://docs.arduino.cc/learn/electronics/potentiometer-basics
+//TODO: Pressing the button again once the timer is started does not affect it
 
 /*
 Project to make an LED turn on when button is pressed, but also triggering a timer which will determine how long the LED will stay lit.  
