@@ -32,25 +32,25 @@ lightUpDuration = map(lightUpDuration, 0, 1023, 1000, 10000);
   
 //output status of button & dial for debugging
 if (buttonState == pressed) {
-  Serial.print("Button is pressed. Time: ");
-  Serial.print('\n');
-  Serial.println(lightUpDuration);
-  Serial.println(lock);
+	Serial.print("Button is pressed. Time: ");
+	Serial.print('\n');
+	Serial.println(lightUpDuration);
+	Serial.println(lock);
 } else {
- Serial.print("Button is unpressed. Time: ");
- Serial.print('\n');
-  Serial.println(lightUpDuration);
-  Serial.println(lock);
+	Serial.print("Button is unpressed. Time: ");
+	Serial.print('\n');
+	Serial.println(lightUpDuration);
+	Serial.println(lock);
 }
 
 if (buttonState == pressed && lock == 0) {
-   timer = millis() + lightUpDuration; //change target time to chosen time from the current time
+  timer = millis() + lightUpDuration; //change target time to chosen time from the current time
   lock = 1;
  }
  if (timer > millis()) {
    digitalWrite(yellowLED, HIGH); //turn on LED
   } else {
-    digitalWrite(yellowLED, LOW); //if time runs out, turn off LED
+   digitalWrite(yellowLED, LOW); //if time runs out, turn off LED
    lock = 0;
    }
   delay(10); //delay a little bit to improve performance
