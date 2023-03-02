@@ -2,14 +2,12 @@
 //TODO: Add potentionemter analog read, and set lightupduration to potentionmeter value via MAT
 //TODO: Add potpin for potentiometer referring to https://docs.arduino.cc/learn/electronics/potentiometer-basics
 
-//TIMER VARIABLES
+//SET VARIABLES
 int timer = 0; //keeps track of target time
 int lightUpDuration = 1000; //length of timer in ms
-//BUTTON VARIABLES
 int buttonPin = 2; //button output connected to digital pin 2
 int buttonState = 0; //initialize var, set button state to off
 int pressed = 1; //HIGH represented as variable to simplify code. 1 means button is pressed, 0 means no
-//LEDs VARIABLES
 int yellowLED = LED_BUILTIN; //yellow LED, connected to builtin LED pin
 int on = 1; //for the LEDs, HIGH is represented as variable
 int off = 0;//for the LEDs, LOW is represented as variable
