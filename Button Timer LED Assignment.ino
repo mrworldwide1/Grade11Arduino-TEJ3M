@@ -1,5 +1,5 @@
 //TODO: Add LED countdown for 5 leds based on milis/lightup duration
-
+//TODO: https://www.w3schools.com/cpp/cpp_switch.asp
 //TASK: Create a circuit where when a button is pressed an LED will turn on. 
 //This also triggers a timer which will determine how long the LED will stay lit. 
 //A dial (potentiometer) can be used to control the time.
