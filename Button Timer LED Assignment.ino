@@ -3,12 +3,12 @@
 //TASK: Create a circuit where when a button is pressed an LED will turn on. This also triggers a timer which will determine how long the LED will stay lit. 
 //A dial (potentiometer) can be used to control the time.
 
-//SET VARIABLES
+//VARIABLES
 int timer = 0; //keeps track of target time
 int lightUpDuration = 0; //length of timer in ms
 int buttonPin = 2; //button output connected to digital pin 2
 int buttonState = 0; //initialize var, set button state to off
-int pressed = 1; //HIGH represented as variable to simplify code. 1 means button is pressed, 0 means no
+int pressed = 1; //HIGH represented as variable to simplify code.
 int yellowLED = LED_BUILTIN; //yellow LED, connected to builtin LED pin
 int potPin = A0; //potentiometer should be connected to A0 analog pin
 int potVal = 0;//read value of potentiometer pin
@@ -31,17 +31,31 @@ potVal = analogRead(potPin);
 int lightUpDuration = potVal;
 lightUpDuration = map(lightUpDuration, 0, 1023, 1000, 10000);
   
-//output status of button & dial for debugging
+//print status of button, timer & potentiometer to serial monitor for debugging.
 if (buttonState == pressed) {
-	Serial.print("Button is pressed. Time: ");
-	Serial.print('\n');
-	Serial.println(lightUpDuration);
-	Serial.println(lock);
+  if (lock == 1) {
+    Serial.print("Button pressed & locked. Time (ms): ");
+    Serial.println(lightUpDuration);
+	//Serial.println(timer);
+	//Serial.println(millis());
+  } else {
+    Serial.print("Button pressed & unlocked. Time (ms): ");
+    Serial.println(lightUpDuration);
+    //Serial.println(timer);
+	//Serial.println(millis());
+  }
 } else {
-	Serial.print("Button is unpressed. Time: ");
-	Serial.print('\n');
-	Serial.println(lightUpDuration);
-	Serial.println(lock);
+	if (lock == 1) {
+		Serial.print("Button unpressed & locked. Time (ms): ");
+    	Serial.println(lightUpDuration);
+      	//Serial.println(timer);
+		//Serial.println(millis());
+    } else {
+      	Serial.print("Button unpressed & unlocked. Time (ms): ");
+   		Serial.println(lightUpDuration);
+      	//Serial.println(timer);
+		//Serial.println(millis());
+    }
 }
 
 if (buttonState == pressed && lock == 0) {
