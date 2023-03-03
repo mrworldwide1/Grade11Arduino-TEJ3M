@@ -1,6 +1,7 @@
 //TODO: Add LED countdown for 5 leds based on milis/lightup duration
 
-//TASK: Create a circuit where when a button is pressed an LED will turn on. This also triggers a timer which will determine how long the LED will stay lit. 
+//TASK: Create a circuit where when a button is pressed an LED will turn on. 
+//This also triggers a timer which will determine how long the LED will stay lit. 
 //A dial (potentiometer) can be used to control the time.
 
 //VARIABLES
@@ -36,13 +37,13 @@ if (buttonState == pressed) {
   if (lock == 1) {
     Serial.print("Button pressed & locked. Time (ms): ");
     Serial.println(lightUpDuration);
-	//Serial.println(timer);
-	//Serial.println(millis());
+	//Serial.println(timer); //UNCOMMENT TO VIEW TIMER
+	//Serial.println(millis()); //UNCOMMENT TO VIEW MILLIS
   } else {
     Serial.print("Button pressed & unlocked. Time (ms): ");
     Serial.println(lightUpDuration);
-    //Serial.println(timer);
-	//Serial.println(millis());
+    //Serial.println(timer); //UNCOMMENT TO VIEW TIMER
+	//Serial.println(millis()); //UNCOMMENT TO VIEW MILLIS
   }
 } else {
 	if (lock == 1) {
