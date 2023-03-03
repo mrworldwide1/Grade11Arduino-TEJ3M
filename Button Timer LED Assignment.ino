@@ -19,7 +19,7 @@ void setup()
   Serial.begin(9600);
   pinMode(buttonPin, INPUT); //output button push status as variable
   pinMode(yellowLED, OUTPUT); //setup yellow LED power pin
-  pinMode(potPin, INPUT); //out button potentiometer status as variable
+  pinMode(potPin, INPUT); //set potentiometer status as variable
 }
 
 void loop()
