@@ -4,7 +4,6 @@
 //This also triggers a timer which will determine how long the LED will stay lit. 
 //A dial (potentiometer) can be used to control the time.
 
-//VARIABLES
 int timer = 0; //keeps track of target time
 int lightUpDuration = 0; //length of timer in ms
 int buttonPin = 2; //button output connected to digital pin 2
@@ -32,7 +31,7 @@ potVal = analogRead(potPin);
 int lightUpDuration = potVal;
 lightUpDuration = map(lightUpDuration, 0, 1023, 1000, 10000);
   
-//print status of button, timer & potentiometer to serial monitor for debugging.
+//print status of button, potentiometer, millis and timer to serial monitor for debugging.
 if (buttonState == pressed) {
   if (lock == 1) {
     Serial.print("Button pressed & locked. Time (ms): ");
