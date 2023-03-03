@@ -36,25 +36,25 @@ if (buttonState == pressed) {
   if (lock == 1) {
     Serial.print("Button pressed & locked. Time (ms): ");
     Serial.println(lightUpDuration);
-	//Serial.println(timer); //UNCOMMENT TO VIEW TIMER
-	//Serial.println(millis()); //UNCOMMENT TO VIEW MILLIS
+	//Serial.println(timer);
+	//Serial.println(millis());
   } else {
     Serial.print("Button pressed & unlocked. Time (ms): ");
     Serial.println(lightUpDuration);
-    //Serial.println(timer); //UNCOMMENT TO VIEW TIMER
-	//Serial.println(millis()); //UNCOMMENT TO VIEW MILLIS
+    //Serial.println(timer);
+	//Serial.println(millis());
   }
 } else {
 	if (lock == 1) {
 	Serial.print("Button unpressed & locked. Time (ms): ");
     Serial.println(lightUpDuration);
-    //Serial.println(timer); //UNCOMMENT TO VIEW TIMER
-	//Serial.println(millis()); //UNCOMMENT TO VIEW TIMER
+    //Serial.println(timer);
+	//Serial.println(millis());
     } else {
     Serial.print("Button unpressed & unlocked. Time (ms): ");
    	Serial.println(lightUpDuration);
-    //Serial.println(timer); //UNCOMMENT TO VIEW TIMER
-	//Serial.println(millis()); //UNCOMMENT TO VIEW MILLIS
+    //Serial.println(timer);
+	//Serial.println(millis());
     }
 }
 
