@@ -46,15 +46,15 @@ if (buttonState == pressed) {
   }
 } else {
 	if (lock == 1) {
-		Serial.print("Button unpressed & locked. Time (ms): ");
-    	Serial.println(lightUpDuration);
-      	//Serial.println(timer);
-		//Serial.println(millis());
+	Serial.print("Button unpressed & locked. Time (ms): ");
+    Serial.println(lightUpDuration);
+    //Serial.println(timer);
+	//Serial.println(millis());
     } else {
-      	Serial.print("Button unpressed & unlocked. Time (ms): ");
-   		Serial.println(lightUpDuration);
-      	//Serial.println(timer);
-		//Serial.println(millis());
+    Serial.print("Button unpressed & unlocked. Time (ms): ");
+   	Serial.println(lightUpDuration);
+    //Serial.println(timer);
+	//Serial.println(millis());
     }
 }
 
