@@ -6,7 +6,7 @@
 
 int timer = 0; //keeps track of target time
 int lightUpDuration = 0; //length of timer in ms
-int buttonPin = 2; //button output connected to digital pin 2
+int buttonPin = 2; //button connected to digital pin 2
 int buttonState = 0; //initialize var, set button state to off
 int pressed = 1; //HIGH represented as variable to simplify code.
 int yellowLED = LED_BUILTIN; //yellow LED, connected to builtin LED pin
