@@ -1,6 +1,7 @@
 //TODO: Add LED countdown for 5 leds based on milis/lightup duration
 
-//INSTRUCTIONS: Turn dial to desired time then press button. Dial sets the time the LED will be lit for.
+//TASK: Create a circuit where when a button is pressed an LED will turn on. This also triggers a timer which will determine how long the LED will stay lit. 
+//A dial (potentiometer) can be used to control the time.
 
 //SET VARIABLES
 int timer = 0; //keeps track of target time
