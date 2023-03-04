@@ -65,7 +65,7 @@ if (buttonState == pressed) {
 
 //TURN ON AND TURN OFF LEDs, DISPLAYING COUNTDOWN
 if (buttonState == pressed && lock == 0) {
- lock = 1; //during the countdown, pressing the button won't start another one
+ lock = 1; //during the countdown, pressing the button won't start it again
  storedMillis = millis(); //notes millis when the button was pressed
  divideVar = lightUpDuration / 4; //4 LEDs used
  totalTime = storedMillis + lightUpDuration; //change target time to chosen time from the current time
