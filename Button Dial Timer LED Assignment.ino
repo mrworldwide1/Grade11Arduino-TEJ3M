@@ -1,27 +1,27 @@
-//TASK: Create a circuit where when a button is pressed an LED will turn on.  This also triggers a timer which will determine how long the LED will stay lit. 
-//A dial (potentiometer) can be used to control the time.
+//TASK: Create a circuit where when a button is pressed an LED will turn on.  This also triggers a timer which will determine how long the LED will stay lit. A dial (potentiometer) used to control the time.
 
 int buttonPin = 2; //button connected to digital pin 2
 int buttonState = 0; //initialize variable, set button state to off
 int pressed = 1; //HIGH represented as variable to simplify code
-int greenLED = 10; //green LED, connected to pin 10
-int yellowLED = 11; //yellow LED, connected to pin 11
-int orangeLED = 12; //orange LED, connected to pin 12
+int blueLED = 10; //blue LED, connected to pin 10
+int yellowLED = 12; //yellow LED, connected to pin 12
+int greenLED = 11; //green LED, connected to pin 11
 int redLED = LED_BUILTIN; //red LED, connected to builtin LED pin
 int potPin = A0; //potentiometer connected to A0 analog pin
 int potVal = 0;//read value of potentiometer pin
 int lightUpDuration = 0; //length of timer in ms
-int totalTime = 0; //keeps track of target time
+long totalTime = 0; //keeps track of target time for LED countdown. Using long instead of int, so that the value doesn't overflow. https://www.arduino.cc/reference/en/language/variables/data-types/long/
 int lock = 0; //Pressing the button again once the timer is started doesn't affect it
-int storedMillis = 0; //make LEDs countdown work
-int divideVar = 0; //make LEDs countdown work
+long storedMillis = 0; //needed for LED countdown. Using long instead of int to ensure it doesn't overflow. While debugging via serial monitor output, I found that storedMillis turned negative which broke the countdown, only ever ligting up the blue LED.
+//Arduino UNO stores 2 byte value for int, a range of -32,768 to 32,767. That is insufficent for this circuit given that 1000ms is 1 second, so it would only be able to run the countdown up to 32.7 seconds. Whereas long goes up to 2 billion.
+int divideVar = 4; //Required for LED countdown. The number of LEDs present, for this circuit there are 4. 
 
 void setup()
 {
   Serial.begin(9600);
-  pinMode(greenLED, OUTPUT); //setup green LED power pin
+  pinMode(blueLED, OUTPUT); //setup blue LED power pin
   pinMode(yellowLED, OUTPUT); //setup yellow LED power pin
-  pinMode(orangeLED, OUTPUT); //setup orange LED power pin
+  pinMode(greenLED, OUTPUT); //setup green LED power pin
   pinMode(redLED, OUTPUT); //setup red LED power pin
   pinMode(buttonPin, INPUT); //output button push status as variable
   pinMode(potPin, INPUT); //setup potentiometer status as variable
@@ -34,36 +34,40 @@ buttonState = digitalRead(buttonPin); //store button status as variable
 //potentiometer
 potVal = analogRead(potPin);
 int lightUpDuration = potVal;
-lightUpDuration = map(lightUpDuration, 0, 1023, 1000, 10000);
+lightUpDuration = map(lightUpDuration, 0, 1023, 1000, 10000); //The dial can set the time from 1 second to 10 seconds. 1000ms(1s)-10000ms(10s)
   
-//print status of button, potentiometer, millis and timer to serial monitor for debugging
+//print status of button and potentiometerto to serial monitor for debugging. To debug millis, totalTime or storedMillis, uncomment the respective lines
 if (buttonState == pressed) {
   if (lock == 1) {
     Serial.print("Button pressed & locked. Time set (ms): ");
     Serial.println(lightUpDuration);
-	//Serial.println(totalTime);
-	//Serial.println(millis());
+	  //Serial.println(totalTime);
+	  //Serial.println(millis());
+    //Serial.println(storedMillis);
   } else {
     Serial.print("Button pressed & unlocked. Time set (ms): ");
     Serial.println(lightUpDuration);
-    	//Serial.println(totalTime);
-	//Serial.println(millis());
+    //Serial.println(totalTime);
+	  //Serial.println(millis());
+    //Serial.println(storedMillis);
   }
 } else {
     if (lock == 1) {
     Serial.print("Button unpressed & locked. Time set (ms): ");
     Serial.println(lightUpDuration);
-	//Serial.println(totalTime);
-	//Serial.println(millis());
+	  //Serial.println(totalTime);
+	  //Serial.println(millis());
+    //Serial.println(storedMillis);
     } else {
     Serial.print("Button unpressed & unlocked. Time set (ms): ");
     Serial.println(lightUpDuration);
-	//Serial.println(totalTime);
-	//Serial.println(millis());
+  	//Serial.println(totalTime);
+  	//Serial.println(millis());
+    //Serial.println(storedMillis);
     }
 }
 
-//TURN ON AND TURN OFF LEDs, DISPLAYING COUNTDOWN
+//TURN ON AND TURN OFF LEDs, DISPLAYING COUNTDOWN EFFECT
 if (buttonState == pressed && lock == 0) {
  lock = 1; //during the countdown, pressing the button won't start it again
  storedMillis = millis(); //notes millis when the button was pressed
@@ -71,31 +75,31 @@ if (buttonState == pressed && lock == 0) {
  totalTime = storedMillis + lightUpDuration; //change target time to chosen time from the current time
  }
  if (millis() <= (storedMillis + divideVar)) {
-   digitalWrite(greenLED, HIGH); //turn on green LED at start of countdown
+   digitalWrite(blueLED, HIGH); //turn on blue LED at start of countdown
+   digitalWrite(greenLED, LOW); //turn off green LED
    digitalWrite(yellowLED, LOW); //turn off yellow LED
-   digitalWrite(orangeLED, LOW); //turn off orange LED
    digitalWrite(redLED, LOW); //turn off red LED
   } else if ((millis() > (storedMillis + divideVar)) && (millis() <= (storedMillis + divideVar + divideVar))) {
-   digitalWrite(greenLED, LOW); //turn off green LED
-   digitalWrite(yellowLED, HIGH); //turn on yellow LED
-   digitalWrite(orangeLED, LOW); //turn off orange LED
+   digitalWrite(blueLED, LOW); //turn off blue LED
+  digitalWrite(greenLED, HIGH); //turn on green LED
+   digitalWrite(yellowLED, LOW); //turn off yellow LED
    digitalWrite(redLED, LOW); //turn off red LED
   } else if ((millis() > (storedMillis + divideVar + divideVar)) && (millis() <= (storedMillis + divideVar + divideVar + divideVar))) {
-   digitalWrite(greenLED, LOW); //turn off green LED
-   digitalWrite(yellowLED, LOW); //turn off yellow LED
-   digitalWrite(orangeLED, HIGH); //turn on orange LED
+   digitalWrite(blueLED, LOW); //turn off blue LED
+    digitalWrite(greenLED, LOW); //turn off green LED
+   digitalWrite(yellowLED, HIGH); //turn on yellow LED
    digitalWrite(redLED, LOW); //turn off red LED
   } else if ((millis() > (storedMillis + divideVar + divideVar + divideVar)) && (millis() < totalTime)) {
-   digitalWrite(greenLED, LOW); //turn off green LED
+   digitalWrite(blueLED, LOW); //turn off blue LED
    digitalWrite(yellowLED, LOW); //turn off yellow LED
-   digitalWrite(orangeLED, LOW); //turn off orange LED
+   digitalWrite(greenLED, LOW); //turn off green LED
    digitalWrite(redLED, HIGH); //turn on red LED
  } else if (millis() >= totalTime) {
-   digitalWrite(greenLED, LOW); //turn off green LED
+   digitalWrite(blueLED, LOW); //turn off blue LED
    digitalWrite(yellowLED, LOW); //turn off yellow LED
-   digitalWrite(orangeLED, LOW); //turn off orange LED
+   digitalWrite(greenLED, LOW); //turn off green LED
    digitalWrite(redLED, LOW); //turn off red LED
-   lock = 0; //unlock button. pressing it now starts the countdown again.
+   lock = 0; //unlocks button. Pressing it can now start the countdown again.
  }
   delay(10); //delay a little bit to improve performance
 }
