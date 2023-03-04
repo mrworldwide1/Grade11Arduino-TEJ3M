@@ -1,9 +1,8 @@
 //TODO: Add LED countdown for 5 leds based on milis/lightup duration https://www.w3schools.com/cpp/cpp_switch.asp
-//TASK: Create a circuit where when a button is pressed an LED will turn on. This also triggers a timer which will determine how long the LED will stay lit. 
+//TASK: Create a circuit where when a button is pressed an LED will turn on. 
+//This also triggers a timer which will determine how long the LED will stay lit. 
 //A dial (potentiometer) can be used to control the time.
 
-int timer = 0; //keeps track of target time
-int lightUpDuration = 0; //length of timer in ms
 int buttonPin = 2; //button connected to digital pin 2
 int buttonState = 0; //initialize variable, set button state to off
 int pressed = 1; //HIGH represented as variable to simplify code
@@ -13,7 +12,11 @@ int orangeLED = 12; //orange LED, connected to pin 12
 int redLED = LED_BUILTIN; //red LED, connected to builtin LED pin
 int potPin = A0; //potentiometer connected to A0 analog pin
 int potVal = 0;//read value of potentiometer pin
+int lightUpDuration = 0; //length of timer in ms
+int totalTime = 0; //keeps track of target time
 int lock = 0; //Pressing the button again once the timer is started doesn't affect it
+int storedMillis = 0; //make LEDs countdown work
+int divideVar = 0;
 
 void setup()
 {
@@ -40,44 +43,61 @@ if (buttonState == pressed) {
   if (lock == 1) {
     Serial.print("Button pressed & locked. Time (ms): ");
     Serial.println(lightUpDuration);
-	//Serial.println(timer);
+	//Serial.println(totalTime);
 	//Serial.println(millis());
   } else {
     Serial.print("Button pressed & unlocked. Time (ms): ");
     Serial.println(lightUpDuration);
-    	//Serial.println(timer);
+    	//Serial.println(totalTime);
 	//Serial.println(millis());
   }
 } else {
     if (lock == 1) {
     Serial.print("Button unpressed & locked. Time (ms): ");
     Serial.println(lightUpDuration);
-	//Serial.println(timer);
+	//Serial.println(totalTime);
 	//Serial.println(millis());
     } else {
     Serial.print("Button unpressed & unlocked. Time (ms): ");
     Serial.println(lightUpDuration);
-	//Serial.println(timer);
+	//Serial.println(totalTime);
 	//Serial.println(millis());
     }
 }
 
-//TURNS ON AND TURNS OFF LEDs
+//TURN ON AND TURN OFF LEDs
 if (buttonState == pressed && lock == 0) {
-  timer = millis() + lightUpDuration; //change target time to chosen time from the current time
-  lock = 1;
+  lock = 1; //during the countdown, pressing the buttons won't start another coundown.
+  storedMillis = millis();
+  divideVar = lightUpDuration / 4; //4 LEDs used
+  totalTime = millis() + lightUpDuration; //change target time to chosen time from the current time
  }
- if (timer > millis()) {
-   digitalWrite(greenLED, HIGH); //if there is remaining time, turn on green LED
+ if (millis() <= (storedMillis + divideVar)) {
+   digitalWrite(greenLED, HIGH); //turn on green LED at start of countdown
+   digitalWrite(yellowLED, LOW); //turn off yellow LED
+   digitalWrite(orangeLED, LOW); //turn off orange LED
+   digitalWrite(redLED, LOW); //turn off red LED
+  } else if ((millis() > (storedMillis + divideVar)) && (millis() <= (storedMillis + divideVar + divideVar))) {
+   digitalWrite(greenLED, LOW); //turn off green LED
    digitalWrite(yellowLED, HIGH); //turn on yellow LED
+   digitalWrite(orangeLED, LOW); //turn off orange LED
+   digitalWrite(redLED, LOW); //turn off red LED
+  } else if ((millis() > (storedMillis + divideVar + divideVar)) && (millis() <= (storedMillis + divideVar + divideVar + divideVar))) {
+   digitalWrite(greenLED, LOW); //turn off green LED
+   digitalWrite(yellowLED, LOW); //turn off yellow LED
    digitalWrite(orangeLED, HIGH); //turn on orange LED
+   digitalWrite(redLED, LOW); //turn off red LED
+  } else if ((millis() > (storedMillis + divideVar + divideVar + divideVar)) && (millis() < totalTime)) {
+   digitalWrite(greenLED, LOW); //turn off green LED
+   digitalWrite(yellowLED, LOW); //turn off yellow LED
+   digitalWrite(orangeLED, LOW); //turn off orange LED
    digitalWrite(redLED, HIGH); //turn on red LED
-  } else {
-   digitalWrite(greenLED, LOW); //if time runs out, turn off green LED
+ } else if (millis() >= totalTime) {
+   digitalWrite(greenLED, LOW); //turn off green LED
    digitalWrite(yellowLED, LOW); //turn off yellow LED
    digitalWrite(orangeLED, LOW); //turn off orange LED
    digitalWrite(redLED, LOW); //turn off red LED
    lock = 0;
-   }
   delay(10); //delay a little bit to improve performance
+}
 }
