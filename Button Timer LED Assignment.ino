@@ -8,8 +8,10 @@ int lightUpDuration = 0; //length of timer in ms
 int buttonPin = 2; //button connected to digital pin 2
 int buttonState = 0; //initialize variable, set button state to off
 int pressed = 1; //HIGH represented as variable to simplify code
-int yellowLED = LED_BUILTIN; //yellow LED, connected to builtin LED pin
-int redLED = 12; //red LED, connected to pin 12
+int greenLED = 10; //green LED, connected to pin 10
+int yellowLED = 11; //yellow LED, connected to pin 11
+int orangeLED = 12; //orange LED, connected to pin 12
+int redLED = LED_BUILTIN; //red LED, connected to builtin LED pin
 int potPin = A0; //potentiometer connected to A0 analog pin
 int potVal = 0;//read value of potentiometer pin
 int lock = 0; //Pressing the button again once the timer is started doesn't affect it
@@ -17,7 +19,9 @@ int lock = 0; //Pressing the button again once the timer is started doesn't affe
 void setup()
 {
   Serial.begin(9600);
+  pinMode(greenLED, OUTPUT); //setup green LED power pin
   pinMode(yellowLED, OUTPUT); //setup yellow LED power pin
+  pinMode(orangeLED, OUTPUT); //setup orange LED power pin
   pinMode(redLED, OUTPUT); //setup red LED power pin
   pinMode(buttonPin, INPUT); //output button push status as variable
   pinMode(potPin, INPUT); //setup potentiometer status as variable
@@ -65,11 +69,15 @@ if (buttonState == pressed && lock == 0) {
   lock = 1;
  }
  if (timer > millis()) {
+   digitalWrite(greenLED, HIGH); //if there is remaining time, turn on green LED
    digitalWrite(yellowLED, HIGH); //turn on yellow LED
+   digitalWrite(orangeLED, HIGH); //turn on orange LED
    digitalWrite(redLED, HIGH); //turn on red LED
   } else {
-   digitalWrite(yellowLED, LOW); //if time runs out, turn off yellow LED
-   digitalWrite(redLED, LOW); //turn on red LED
+   digitalWrite(greenLED, LOW); //if time runs out, turn off green LED
+   digitalWrite(yellowLED, LOW); //turn off yellow LED
+   digitalWrite(orangeLED, LOW); //turn off orange LED
+   digitalWrite(redLED, LOW); //turn off red LED
    lock = 0;
    }
   delay(10); //delay a little bit to improve performance
