@@ -97,7 +97,7 @@ if (buttonState == pressed && lock == 0) {
    digitalWrite(yellowLED, LOW); //turn off yellow LED
    digitalWrite(orangeLED, LOW); //turn off orange LED
    digitalWrite(redLED, LOW); //turn off red LED
+   lock = 0;
  }
   delay(10); //delay a little bit to improve performance
-  lock = 0;
 }
