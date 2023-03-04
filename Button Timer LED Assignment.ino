@@ -1,5 +1,4 @@
-//TODO: Add LED countdown for 5 leds based on milis/lightup duration
-//TODO: https://www.w3schools.com/cpp/cpp_switch.asp
+//TODO: Add LED countdown for 5 leds based on milis/lightup duration https://www.w3schools.com/cpp/cpp_switch.asp
 //TASK: Create a circuit where when a button is pressed an LED will turn on. 
 //This also triggers a timer which will determine how long the LED will stay lit. 
 //A dial (potentiometer) can be used to control the time.
@@ -19,7 +18,7 @@ void setup()
   Serial.begin(9600);
   pinMode(buttonPin, INPUT); //output button push status as variable
   pinMode(yellowLED, OUTPUT); //setup yellow LED power pin
-  pinMode(potPin, INPUT); //set potentiometer status as variable
+  pinMode(potPin, INPUT); //setup potPin variable. sets potentiometer status as variable
 }
 
 void loop()
@@ -31,7 +30,7 @@ potVal = analogRead(potPin);
 int lightUpDuration = potVal;
 lightUpDuration = map(lightUpDuration, 0, 1023, 1000, 10000);
   
-//print status of button, potentiometer, millis and timer to serial monitor for debugging.
+//print status of button, potentiometer, millis and timer to serial monitor for debugging
 if (buttonState == pressed) {
   if (lock == 1) {
     Serial.print("Button pressed & locked. Time (ms): ");
@@ -47,13 +46,13 @@ if (buttonState == pressed) {
 } else {
 	if (lock == 1) {
 	Serial.print("Button unpressed & locked. Time (ms): ");
-    Serial.println(lightUpDuration);
-    //Serial.println(timer);
+    	Serial.println(lightUpDuration);
+	//Serial.println(timer);
 	//Serial.println(millis());
     } else {
     Serial.print("Button unpressed & unlocked. Time (ms): ");
-   	Serial.println(lightUpDuration);
-    //Serial.println(timer);
+    Serial.println(lightUpDuration);
+	//Serial.println(timer);
 	//Serial.println(millis());
     }
 }
