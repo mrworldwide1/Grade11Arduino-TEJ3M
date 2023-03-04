@@ -42,7 +42,7 @@ if (buttonState == pressed) {
   } else {
     Serial.print("Button pressed & unlocked. Time (ms): ");
     Serial.println(lightUpDuration);
-    //Serial.println(timer);
+    	//Serial.println(timer);
 	//Serial.println(millis());
   }
 } else {
