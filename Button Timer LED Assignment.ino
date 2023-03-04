@@ -1,7 +1,6 @@
-//TODO: Add LED countdown for 5 leds based on milis/lightup duration https://www.w3schools.com/cpp/cpp_switch.asp
-//TASK: Create a circuit where when a button is pressed an LED will turn on. 
-//This also triggers a timer which will determine how long the LED will stay lit. 
-//A dial (potentiometer) can be used to control the time.
+//TODO: replace if else spam with switch statements
+//TASK: Create a circuit where when a button is pressed an LED will turn on. This also triggers a timer which will determine how long the LED will stay lit. 
+//A dial (potentiometer) is used to control the time.
 
 int buttonPin = 2; //button connected to digital pin 2
 int buttonState = 0; //initialize variable, set button state to off
@@ -67,7 +66,7 @@ if (buttonState == pressed) {
 
 //TURN ON AND TURN OFF LEDs
 if (buttonState == pressed && lock == 0) {
-  lock = 1; //during the countdown, pressing the buttons won't start another coundown.
+  lock = 1; //during the countdown, pressing the button won't start another one.
   storedMillis = millis();
   divideVar = lightUpDuration / 4; //4 LEDs used
   totalTime = millis() + lightUpDuration; //change target time to chosen time from the current time
