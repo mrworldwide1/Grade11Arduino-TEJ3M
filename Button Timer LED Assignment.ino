@@ -70,7 +70,7 @@ if (buttonState == pressed && lock == 0) {
   lock = 1; //during the countdown, pressing the button won't start another one
   storedMillis = millis(); //notes millis when the button was pressed
   divideVar = lightUpDuration / 4; //4 LEDs used
-  totalTime = millis() + lightUpDuration; //change target time to chosen time from the current time
+  totalTime = storedMillis + lightUpDuration; //change target time to chosen time from the current time
  }
  if (millis() <= (storedMillis + divideVar)) {
    digitalWrite(greenLED, HIGH); //turn on green LED at start of countdown
@@ -98,6 +98,6 @@ if (buttonState == pressed && lock == 0) {
    digitalWrite(orangeLED, LOW); //turn off orange LED
    digitalWrite(redLED, LOW); //turn off red LED
    lock = 0;
+ }
   delay(10); //delay a little bit to improve performance
-}
 }
