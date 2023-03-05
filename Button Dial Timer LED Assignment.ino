@@ -69,7 +69,7 @@ if (buttonState == pressed) {
 
 //TURN ON AND TURN OFF LEDs, DISPLAYING COUNTDOWN EFFECT
 //EXPLANATION: to get the countdown effect working for the 4 LEDs each LED turns on at 4 intervals. specifically, when 100% of the timer remains, when 75% remains, 50% remains, 25%, and lastly 0%.
-//Example: 2000ms millis & dial set to 5000ms. all the LEDs will turn off once millis reaches 7000ms. there are 4 LEDs so divide dial time by 4 (5000/4 = 1000). immediately after pressing button, blue LED is lit.
+//Example: 2000ms millis & dial set to 5000ms. all LEDs will turn off once millis reaches 7000ms. there are 4 LEDs so divide dial time by 4 (5000/4 = 1000). immediately after pressing button, blue LED is lit.
 //then, when millis reaches 4000ms, green LED is lit. At 5000ms, yellow LED is lit. 6000ms, red LED is lit. at 7000ms, all LEDs are turned off.
 //2000ms + 1000ms = 3000ms, 2000ms + (1000ms + 1000ms) = 4000ms, 2000ms + (1000ms + 1000ms + 1000ms) = 5000ms, etc.
 
