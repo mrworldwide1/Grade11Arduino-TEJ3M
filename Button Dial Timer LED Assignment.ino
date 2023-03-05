@@ -74,6 +74,7 @@ if (buttonState == pressed && lock == 0) {
  divideVar = lightUpDuration / 4; //4 LEDs used
  totalTime = storedMillis + lightUpDuration; //change target time to chosen time from the current time
  }
+
  if (millis() <= (storedMillis + divideVar)) {
    digitalWrite(blueLED, HIGH); //turn on blue LED at start of countdown
    digitalWrite(greenLED, LOW); //turn off green LED
