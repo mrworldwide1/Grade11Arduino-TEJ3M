@@ -36,7 +36,7 @@ potVal = analogRead(potPin);
 int lightUpDuration = potVal;
 lightUpDuration = map(lightUpDuration, 0, 1023, 1000, 10000); //dial can set the time from 1 second to 10 seconds. 1000ms(1s)-10000ms(10s)
   
-//print status of button and potentiometer for debugging. To debug millis, totalTime or storedMillis, uncomment the respective lines
+//print serial monitor status of button & potentiometer for debugging. To debug millis, totalTime or storedMillis, uncomment the respective lines
 if (buttonState == pressed) {
   if (lock == 1) {
     Serial.print("Button pressed & locked. Time set (ms): ");
