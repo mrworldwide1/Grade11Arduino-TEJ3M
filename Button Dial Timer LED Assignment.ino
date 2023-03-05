@@ -13,7 +13,7 @@ int potVal = 0;//read value of potentiometer pin
 int lightUpDuration = 0; //define variable. length of timer in ms, selected by dial
 long totalTime = 0; //define variable. keeps track of target time for LED countdown. Using long instead of int so the value doesn't overflow.
 long storedMillis = 0; //needed for LED countdown. Using long instead of int to ensure it doesn't overflow. While debugging via serial monitor output, I found that storedMillis turned negative which broke the countdown.
-//Arduino UNO stores a range of -32,768 to 32,767 for integers. That's insufficent for this circuit given that 1000ms is 1 second, so the circuit could only run for up to 32.7 seconds before it breaks. Whereas long goes up to 2 billion.
+//Arduino UNO stores a range of -32,768 to 32,767 for int. That's insufficent for this circuit given that 1000ms is 1 second, so the circuit could only run for up to 32.7 seconds before it breaks. Whereas long goes up to 2 billion.
 int divideVar = 0; //define variable, required for LED countdown
 
 void setup()
