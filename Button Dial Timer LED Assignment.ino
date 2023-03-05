@@ -10,11 +10,11 @@ int greenLED = 11; //green LED, connected to pin 11
 int redLED = LED_BUILTIN; //red LED, connected to builtin LED pin
 int potPin = A0; //potentiometer connected to A0 analog pin
 int potVal = 0;//read value of potentiometer pin
-int lightUpDuration = 0; //length of timer in ms
+int lightUpDuration = 0; //length of timer in ms, selected by dial
 long totalTime = 0; //keeps track of target time for LED countdown. Using long instead of int, so that the value doesn't overflow. https://www.arduino.cc/reference/en/language/variables/data-types/long/
 long storedMillis = 0; //needed for LED countdown. Using long instead of int to ensure it doesn't overflow. While debugging via serial monitor output, I found that storedMillis turned negative which broke the countdown, only ever ligting up the blue LED.
 //Arduino UNO stores 2 byte value for int, a range of -32,768 to 32,767. That is insufficent for this circuit given that 1000ms is 1 second, so the circuit could only run for up to 32.7 seconds before it breaks. Whereas long goes up to 2 billion.
-int divideVar = 0; //required for LED countdown
+int divideVar = 0; //initilaize variable, required for LED countdown
 
 void setup()
 {
