@@ -76,8 +76,8 @@ if (buttonState == pressed) {
 if (buttonState == pressed && lock == 0) {
  lock = 1; //pressing the button won't do anything until countdown is over
  storedMillis = millis(); //notes millis when the button was pressed
- divideVar = lightUpDuration / 4; //4 LEDs used, 4 LED lightup intervals needed
- totalTime = storedMillis + lightUpDuration; //determine the time at which all LEDs will turn off
+ divideVar = lightUpDuration / 4; //4 LEDs used
+ totalTime = storedMillis + lightUpDuration; //determine when all LEDs will turn off
  }
 
  if (millis() <= (storedMillis + divideVar)) {
