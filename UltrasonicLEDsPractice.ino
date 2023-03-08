@@ -9,7 +9,7 @@
  */
 int trigPin = 11;    // Trigger connected to pin 11
 int echoPin = 12;    // Echo connected to pin 12
-long duration, cm, inches; //setup distance variables
+long duration, cm; //setup distance variables
 int greenLED = LED_BUILTIN; //green LED, connected to builtin led
 int yellowLED = 10; //yellow LED, connected to pin 10
 int redLED = 9; //red LED, connected to pin 9
