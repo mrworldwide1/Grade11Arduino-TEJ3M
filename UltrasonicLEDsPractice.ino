@@ -46,12 +46,10 @@ void loop() {
   delay(50);
 
 //light up LEDs based on distance
-  if ((cm <= 35) && (cm >= 20)) {
-    digitalWrite(greenLED, HIGH); //turn on green LED
-  } else if ((cm <= 19) && (cm >= 9)) {
-    digitalWrite(yellowLED, HIGH);
-  } else if (cm <= 8) {
-    digitalWrite(redLED, HIGH);
+ if (cm <= 35) {
+    digitalWrite(yellowLED, HIGH); //turn off yellow LED
+    digitalWrite(greenLED, HIGH); //turn off green LED
+    digitalWrite(redLED, HIGH); //turn off red LED
   } else {
     digitalWrite(yellowLED, LOW); //turn off yellow LED
     digitalWrite(greenLED, LOW); //turn off green LED
