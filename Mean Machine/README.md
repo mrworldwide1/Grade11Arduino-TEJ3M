@@ -1,5 +1,5 @@
 # Mean Machine
-Project collab between Archisman Nath and Lucas L. to create a cardboard machine that puts a peice of candy on a platform and pulls it away when someone tries to get it. 
-Contains the .ino code.
+Project collab between Archisman Nath and Lucas L. with the goal of creating a cardboard machine that puts a peice of candy on a platform and pulls it away when someone tries to get it. 
+Repo contains the .ino code.
 
 Using: servos, ultrasonic distance sensor
